@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mywebapp
+  name: mywebapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mywebapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mywebapp
+    spec:
+      containers:
+        - image: franroa/myapp:latest
+          imagePullPolicy: IfNotPresent
+          name: myapp
+          ports:
+            - containerPort: 8080
+          resources: {}
+status: {}
