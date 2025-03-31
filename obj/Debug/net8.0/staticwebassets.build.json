@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "EuNMn2RLJelVa8EMPcw+W3Yp1cPmkYOgeelUm43Q1TI=",
+  "Source": "OTEL",
+  "BasePath": "_content/OTEL",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
