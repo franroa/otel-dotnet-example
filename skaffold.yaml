@@ -20,7 +20,8 @@ portForward:
   #   resourceName: kube-prometheus-stack-grafana
   #   namespace: kube-prometheus-stack
   #   port: 3000
-  # - resourceType: pod
-  #   resourceName: prometheus-kube-prometheus-stack-prometheus-0
-  #   namespace: kube-prometheus-stack
-  #   port: 9090
+  - resourceType: pod
+    resourceName: mimir-gateway-5dcc67b4d9-5t59v
+    namespace: observability
+    port: 8080
+    localPort: 9191
