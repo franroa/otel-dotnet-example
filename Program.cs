@@ -29,7 +29,7 @@ async Task<string> SendGreeting(ILogger<Program> logger)
     // Add a tag to the Activity
     activity?.SetTag("greeting", "Hello World!");
 
-    return "Hello World!";
+    return "Hello test World!";
 }
 
 // Setup logging to be exported via OpenTelemetry

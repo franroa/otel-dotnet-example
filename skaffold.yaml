@@ -4,7 +4,7 @@ metadata:
   name: otel-dotnet-example
 build:
   artifacts:
-    - image: docker.io/tsyl/otel-example
+    - image: tsyltestregistry.azurecr.io/otel-example
       docker:
         dockerfile: Dockerfile
 manifests:
@@ -20,8 +20,8 @@ portForward:
   #   resourceName: kube-prometheus-stack-grafana
   #   namespace: kube-prometheus-stack
   #   port: 3000
-  - resourceType: pod
-    resourceName: mimir-gateway-5dcc67b4d9-5t59v
+  - resourceType: deployment
+    resourceName: mimir-gateway
     namespace: observability
     port: 8080
     localPort: 9191
