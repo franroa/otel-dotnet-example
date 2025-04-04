@@ -20,8 +20,8 @@ portForward:
   #   resourceName: kube-prometheus-stack-grafana
   #   namespace: kube-prometheus-stack
   #   port: 3000
-  - resourceType: deployment
-    resourceName: mimir-gateway
+  - resourceType: service
+    resourceName: mimir-query-frontend
     namespace: observability
     port: 8080
     localPort: 9191
