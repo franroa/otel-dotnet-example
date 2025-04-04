@@ -21,7 +21,7 @@ portForward:
   #   namespace: kube-prometheus-stack
   #   port: 3000
   - resourceType: service
-    resourceName: mimir-query-frontend
+    resourceName: grafana
     namespace: observability
-    port: 8080
+    port: 80
     localPort: 9191
