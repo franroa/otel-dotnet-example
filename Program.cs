@@ -32,8 +32,13 @@ async Task<string> SendGreeting(ILogger<Program> logger)
     return "Hello World!";
 }
 
+// Setup logging to be exported via OpenTelemetry
+builder.Logging.AddOpenTelemetry(logging =>
+{
+    logging.IncludeFormattedMessage = true;
+    logging.IncludeScopes = true;
+});
 
-var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
 var otel = builder.Services.AddOpenTelemetry();
 
 // Configure OpenTelemetry Resources with the application name
@@ -54,23 +59,26 @@ otel.WithMetrics(metrics => metrics
     .AddPrometheusExporter());
 
 // Add Tracing for ASP.NET Core and our custom ActivitySource and export to Jaeger
+var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
 otel.WithTracing(tracing =>
 {
     tracing.AddAspNetCoreInstrumentation();
     tracing.AddHttpClientInstrumentation();
     tracing.AddSource(greeterActivitySource.Name);
-    if (tracingOtlpEndpoint != null)
-    {
-        tracing.AddOtlpExporter(otlpOptions =>
-         {
-             otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
-         });
-    }
-    else
-    {
-        tracing.AddConsoleExporter();
-    }
+    // if (tracingOtlpEndpoint != null)
+    // {
+    tracing.AddOtlpExporter(otlpOptions =>
+     {
+              otlpOptions.Endpoint = new Uri("http://opentelemetry-operator-system.otel-tempo-collector:4317");
+              // otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
+     });
+    // }
+    // else
+    // {
+    //     tracing.AddConsoleExporter();
+    // }
 });
+
 
 var app = builder.Build();
 

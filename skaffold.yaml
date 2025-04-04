@@ -1,0 +1,26 @@
+apiVersion: skaffold/v4beta12
+kind: Config
+metadata:
+  name: otel-dotnet-example
+build:
+  artifacts:
+    - image: docker.io/tsyl/otel-example
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/deployment.yml
+portForward:
+  - resourceType: deployment
+    resourceName: mywebapp
+    namespace: default
+    port: 8080
+    localPort: 9000 # *Optional
+  # - resourceType: deployment
+  #   resourceName: kube-prometheus-stack-grafana
+  #   namespace: kube-prometheus-stack
+  #   port: 3000
+  # - resourceType: pod
+  #   resourceName: prometheus-kube-prometheus-stack-prometheus-0
+  #   namespace: kube-prometheus-stack
+  #   port: 9090

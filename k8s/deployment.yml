@@ -18,7 +18,7 @@ spec:
         app: mywebapp
     spec:
       containers:
-        - image: franroa/myapp:latest
+        - image: tsyltestregistry.azurecr.io/otel-example:0.0.1
           imagePullPolicy: IfNotPresent
           name: myapp
           ports:
