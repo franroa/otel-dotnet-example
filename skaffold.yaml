@@ -9,7 +9,7 @@ build:
         dockerfile: Dockerfile
 manifests:
   rawYaml:
-    - k8s/deployment.yml
+    - k8s/*.yml
 portForward:
   - resourceType: deployment
     resourceName: mywebapp
